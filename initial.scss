@@ -1,0 +1,163 @@
+:root {
+  --input-border-color: blue;
+  --link-color: red;
+  --important-color: green;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, system-ui, blinkmacsystemfont, roboto;
+  background: lightblue;
+}
+
+.container {
+  margin: 30px;
+  padding-top: 30px;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  @media all and (max-width: 600px) {
+    margin: 15px;
+    width: auto;
+  }
+
+  .input-container:focus-within {
+    .address-list-container {
+      visibility: visible;
+    }
+  }
+
+  .input-container {
+    position: relative;
+    width: 40%;
+
+    @media all and (max-width: 600px) {
+      display: grid;
+      width: 100%;
+    }
+
+    .search-input {
+      border: 1px solid var(--input-border-color);
+      border-radius: 8px;
+      outline: none;
+      padding: 13px 12px 7px 50px;
+      width: 100%;
+      height: 30px;
+      color: black;
+      font-size: 0.9em;
+      font-weight: 500;
+
+      @media all and (max-width: 600px) {
+        width: auto;
+      }
+    }
+
+    .search-input:focus {
+      border-bottom: none;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .address-list-container {
+      visibility: hidden;
+    }
+
+    .search-input:placeholder-shown {
+      border: 1px solid var(--input-border-color);
+      border-radius: 8px;
+      padding: 10px 13px 10px 50px;
+    }
+
+    .search-input:placeholder-shown ~ .address-list-container {
+      visibility: hidden;
+    }
+
+    .search-input:placeholder-shown + .placeholder {
+      /* if real placeholder is shown - hide fake placeholder */
+      opacity: 0;
+    }
+
+    .placeholder {
+      font-family: -apple-system, system-ui, blinkmacsystemfont, roboto;
+      font-size: 13px;
+      position: absolute;
+      left: 15px;
+      top: 2px;
+      pointer-events: none;
+      opacity: 0.5;
+      width: 99%;
+      padding-bottom: 31px;
+      padding-left: 35px;
+      border-bottom: 1px solid var(--input-border-color);
+    }
+
+    .map-pin-icon-container {
+      color: black;
+      position: absolute;
+      top: 0;
+      padding: 15px 0 0 15px;
+      width: 13px;
+    }
+
+    .user-position-icon-container {
+      cursor: pointer;
+      border-left: 1px solid var(--input-border-color);
+      position: absolute;
+      padding: 5px 0 0 20px;
+      right: -44px;
+      top: 7px;
+      color: var(--link-color);
+      background: white;
+    }
+  }
+}
+
+.address-list-container {
+  background-color: white;
+  width: 100%;
+  border-radius: 0 0 8px 8px;
+  position: absolute;
+  padding-right: 62px;
+  z-index: 2;
+  border: 1px solid var(--input-border-color);
+  border-top: none;
+
+  &__item {
+    display: flex;
+    margin-left: 5px;
+    padding-bottom: 11px;
+    padding-top: 10px;
+    color: black;
+    font-size: 0.9em;
+    padding-right: 50px;
+    width: 100%;
+    font-weight: 500;
+
+    &__map-pin {
+      display: inline-block;
+      margin: 0 10px 0 5px;
+    }
+
+    &__arrow {
+      position: absolute;
+      right: 17px;
+      padding: 3px 0 0 10px;
+      color: var(--link-color);
+
+      i {
+        font-size: 17px;
+      }
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--important-color);
+  }
+}
